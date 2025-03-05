@@ -4,3 +4,7 @@
 html, body {
     overscroll-behavior: none; /* Stops Scroll Bounce */
 }
+
+/* [contenteditable]:focus {
+    outline: none !important;
+  } */

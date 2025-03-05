@@ -8,14 +8,14 @@ const MenuBar = ({ editor }) => {
   }
 
   return (
-    <div className="h-screen flex flex-col">
-      <div>
+    <div className="h-full flex flex-col w-[calc(100%-4rem)] mx-auto">
+      <div className='border my-[1rem] flex gap-[1rem] px-[1rem]'>
         <button
           onClick={() => editor.chain().focus().toggleBold().run()}
           disabled={!editor.can().chain().focus().toggleBold().run()}
           className={editor.isActive('bold') ? 'is-active' : ''}
         >
-          B
+          <img src="../assets/1_MenuBar/1_bold.svg" />
         </button>
         <button
           onClick={() => editor.chain().focus().toggleItalic().run()}
@@ -63,8 +63,8 @@ const MenuBar = ({ editor }) => {
         </button>
         
       </div>
-      <div className="">
-        <EditorContent editor={editor} className="w-full flex-grow" />
+      <div className="h-full">
+        <EditorContent editor={editor} className="flex-grow outline-none" />
       </div>
     </div>
   );
@@ -77,6 +77,11 @@ const Tiptap = () => {
   const editor = useEditor({
     extensions,
     content,
+    editorProps: {
+      attributes: {
+        class: 'focus:outline-none',
+      },
+    },
   });
 
   if (!editor) {

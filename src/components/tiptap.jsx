@@ -15,14 +15,14 @@ const MenuBar = ({ editor }) => {
           disabled={!editor.can().chain().focus().toggleBold().run()}
           className={editor.isActive('bold') ? 'is-active' : ''}
         >
-          <img src="../assets/1_MenuBar/1_bold.svg" />
+          <img src="../src/assets/1_MenuBar/1_bold.svg" alt='Bold' className='h-8'/> 
         </button>
         <button
           onClick={() => editor.chain().focus().toggleItalic().run()}
           disabled={!editor.can().chain().focus().toggleItalic().run()}
           className={editor.isActive('italic') ? 'is-active' : ''}
         >
-          I
+          <img src="../src/assets/1_MenuBar/2_italic.svg" alt='Italics' className='h-8'/>
         </button>
         <button
           onClick={() => editor.chain().focus().toggleStrike().run()}
@@ -35,7 +35,7 @@ const MenuBar = ({ editor }) => {
           }
           className={editor.isActive('strike') ? 'is-active' : ''}
         >
-          Strike
+          <img src="../src/assets/1_MenuBar/3_Strike.svg" alt='Strike' className='h-8'/>
         </button>
         <button
           onClick={() => editor.chain().focus().setParagraph().run()}

@@ -1,8 +1,12 @@
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import React from 'react';
+import { editorState } from '../store/atoms/editor';
+import { useAtomValue, useSetAtom } from 'jotai';
 
-const MenuBar = ({ editor }) => {
+const MenuBar = () => {
+  const editor = useAtomValue(editorState);
+
   if (!editor) {
     return null;
   }
@@ -72,7 +76,10 @@ const MenuBar = ({ editor }) => {
 
 const Tiptap = () => {
   const extensions = [StarterKit];
+
   const content = '<p>Hello World!</p>';
+
+  const setEditor = useSetAtom(editorState);
 
   const editor = useEditor({
     extensions,
@@ -82,15 +89,22 @@ const Tiptap = () => {
         class: 'focus:outline-none',
       },
     },
+    onCreate: ({editor})=> {
+      setEditor(editor);
+    },
+    onDestroy: ({editor}) => {
+      setEditor(null);
+    }
   });
 
   if (!editor) {
     return null; // Wait for the editor to initialize
   }
 
+
   return (
     <>
-      <MenuBar editor={editor} />
+      <MenuBar/>
     </>
   );
 };

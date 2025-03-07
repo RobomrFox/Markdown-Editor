@@ -1,13 +1,17 @@
-import { useState } from 'react'
+
+import { Provider } from 'jotai';
 import './App.css'
-import MdWrapper from './components/MdWrapper';
+import MdWrapper from './components/mdwrapper';
 import SideBar from './components/sidebar';
 
 
 function App() {
+  console.log('is this working?')
 
   return (
     <>
+    <Provider>
+
     <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 h-screen overflow-hidden">
       <SideBar></SideBar>
 
@@ -16,6 +20,7 @@ function App() {
       </div>
     </div>
     
+    </Provider>
       
     </>
   )

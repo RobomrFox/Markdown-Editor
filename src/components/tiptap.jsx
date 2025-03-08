@@ -1,8 +1,22 @@
+import { Document } from '@tiptap/extension-document'
+import { Paragraph } from '@tiptap/extension-paragraph'
+import { Text } from '@tiptap/extension-text'
+
+import { Bold } from '@tiptap/extension-bold'
+import { Italic } from '@tiptap/extension-italic'
+import { Strike } from '@tiptap/extension-strike'
+
+import { Heading } from '@tiptap/extension-heading'
+import { BulletList } from '@tiptap/extension-bullet-list'
+import { OrderedList } from '@tiptap/extension-ordered-list'
+import { CodeBlock } from '@tiptap/extension-code-block'
+
 import { useEditor, EditorContent } from '@tiptap/react';
-import StarterKit from '@tiptap/starter-kit';
 import React from 'react';
 import { editorState } from '../store/atoms/editor';
 import { useAtomValue, useSetAtom } from 'jotai';
+
+
 
 const MenuBar = () => {
   const editor = useAtomValue(editorState);
@@ -19,14 +33,14 @@ const MenuBar = () => {
           disabled={!editor.can().chain().focus().toggleBold().run()}
           className={editor.isActive('bold') ? 'is-active' : ''}
         >
-          <img src="../src/assets/1_MenuBar/1_bold.svg" alt='Bold' className='h-8'/> 
+          <img src="src/assets/1_MenuBar/1_bold.svg" alt='Bold' className='h-8'/> 
         </button>
         <button
           onClick={() => editor.chain().focus().toggleItalic().run()}
           disabled={!editor.can().chain().focus().toggleItalic().run()}
           className={editor.isActive('italic') ? 'is-active' : ''}
         >
-          <img src="../src/assets/1_MenuBar/2_italic.svg" alt='Italics' className='h-8'/>
+          <img src="src/assets/1_MenuBar/2_italic.svg" alt='Italics' className='h-8'/>
         </button>
         <button
           onClick={() => editor.chain().focus().toggleStrike().run()}
@@ -39,7 +53,7 @@ const MenuBar = () => {
           }
           className={editor.isActive('strike') ? 'is-active' : ''}
         >
-          <img src="../src/assets/1_MenuBar/3_Strike.svg" alt='Strike' className='h-8'/>
+          <img src="src/assets/1_MenuBar/3_Strike.svg" alt='Strike' className='h-8'/>
         </button>
         <button
           onClick={() => editor.chain().focus().setParagraph().run()}
@@ -75,7 +89,20 @@ const MenuBar = () => {
 };
 
 const Tiptap = () => {
-  const extensions = [StarterKit];
+  const extensions = [
+    Document,
+    Paragraph,
+    Text,
+    Heading.configure({
+      levels: [1, 2, 3]
+    }),
+    Bold, 
+    Italic,
+    Strike,
+    CodeBlock,
+    OrderedList,
+    BulletList
+  ];
 
   const content = '<p>Hello World!</p>';
 
@@ -100,6 +127,8 @@ const Tiptap = () => {
   if (!editor) {
     return null; // Wait for the editor to initialize
   }
+
+  console.log("this is editor: " + editor);
 
 
   return (

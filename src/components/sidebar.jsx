@@ -5,17 +5,19 @@ const SideBar = () => {
 
     const editor = useAtomValue(editorState);
 
+    function getThis(event) {
+        const value = event.currentTarget.innerHTML;
+        console.log(value);
+        editor.commands.insertContent(value);
+    }
+
     return (
         <>
         <div className="w-full bg-slate-50 h-screen"> 
             😒
 
             <div className="flex flex-col my-auto h-full">
-                <button onClick={(event) => {
-                    if(editor) {
-                        editor.commands.insertContent('😎');
-                    }
-                    }}>
+                <button data-tip="2" onClick={getThis}>
                     <span className="text-[5rem]">😎</span> 
                 </button>
                 <button>
@@ -27,8 +29,8 @@ const SideBar = () => {
     )
 }
 
-function isertIcons(item) {
-    const value = item.targe.value;
+function insertIcons(item) {
+    const value = item.target.value;
 }
 
 export default SideBar;

@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+.ProseMirror h1 {
+    @apply text-[2rem] font-semibold my-[0.67rem];
+}
+
+.ProseMirror h2 {
+    @apply text-[1.5rem] font-semibold my-[0.83rem];
+}
+
+.ProseMirror h3 {
+    @apply text-[1.25rem] font-semibold my-[1rem];
+}
+
+.ProseMirror ul {
+    @apply list-disc pl-8;
+}
+
+.ProseMirror ol {
+    @apply list-decimal pl-8;
+}
+
+.ProseMirror pre {
+    @apply bg-gray-100 p-4 rounded-md;
+}

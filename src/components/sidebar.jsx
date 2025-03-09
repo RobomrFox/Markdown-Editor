@@ -25,16 +25,17 @@ const SideBar = () => {
 
 
     function insertSVG() {
-        editor.commands.insertContent(`
-          <div style="min-height: 50px; display: inline-block;">
-            <svg width="50" height="50" style="fill: #5865F2;" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="25" cy="25" r="20"/>
-            </svg>
-          </div>
-        `);
+        editor.commands.insertContent({
+            type: 'image',
+            attrs: {
+              src: '/src/assets/1_MenuBar/1_bold.svg', // Verify path
+              width: 50,
+              height: 50,
+              style: 'display: inline;'
+            }
+          })
       }
-    
-
+      
     return (
         <>
         <div className="w-full bg-slate-50 h-screen"> 

@@ -21,35 +21,18 @@ import { editorState } from '../store/atoms/editor';
 import { useAtomValue, useSetAtom } from 'jotai';
 
 import { Node } from '@tiptap/core';
-import { Markdown } from 'tiptap-markdown';
-import { Extension } from '@tiptap/core'
 
 
-const SVGNode = Node.create({
-  name: 'svg',
-  group: 'block',
-  parseHTML: () => [{ tag: 'svg' }],
-  renderHTML: ({ HTMLAttributes }) => ['svg', HTMLAttributes],
-});
-
-
-const CustomHTML = Extension.create({
-  name: 'customHTML',
-  addGlobalAttributes() {
-    return [
-      {
-        types: ['textStyle'],
-        attributes: {
-          fontSize: {
-            default: null,
-            parseHTML: element => element.style.fontSize,
-            renderHTML: attributes => ({ style: `font-size: ${attributes.fontSize}` }),
-          },
-        },
-      },
-    ];
-  },
-});
+const CustomImage = Image.extend({
+  addAttributes() {
+    return {
+      ...this.parent?.(),
+      width: { default: null }, // Allow width
+      height: { default: null }, // Allow height
+      style: { default: 'display: inline-block' } // Add default styling
+    }
+  }
+})
 
 
 
@@ -139,11 +122,8 @@ const Tiptap = () => {
     ListItem,
     OrderedList,
     BulletList,
-    Image,
     History,
-    SVGNode,
-    Markdown,
-    CustomHTML
+    CustomImage,
   ];
 
   const content = '<p>Hello World!</p>';

@@ -1,6 +1,7 @@
 import { Document } from '@tiptap/extension-document'
 import { Paragraph } from '@tiptap/extension-paragraph'
 import { Text } from '@tiptap/extension-text'
+import Image from '@tiptap/extension-image'
 
 import { Bold } from '@tiptap/extension-bold'
 import { Italic } from '@tiptap/extension-italic'
@@ -10,11 +11,45 @@ import { Heading } from '@tiptap/extension-heading'
 import { BulletList } from '@tiptap/extension-bullet-list'
 import { OrderedList } from '@tiptap/extension-ordered-list'
 import { CodeBlock } from '@tiptap/extension-code-block'
+import { ListItem } from '@tiptap/extension-list-item'
+import History from '@tiptap/extension-history'
 
+import '../tiptap-style.css'
 import { useEditor, EditorContent } from '@tiptap/react';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { editorState } from '../store/atoms/editor';
 import { useAtomValue, useSetAtom } from 'jotai';
+
+import { Node } from '@tiptap/core';
+import { Markdown } from 'tiptap-markdown';
+import { Extension } from '@tiptap/core'
+
+
+const SVGNode = Node.create({
+  name: 'svg',
+  group: 'block',
+  parseHTML: () => [{ tag: 'svg' }],
+  renderHTML: ({ HTMLAttributes }) => ['svg', HTMLAttributes],
+});
+
+
+const CustomHTML = Extension.create({
+  name: 'customHTML',
+  addGlobalAttributes() {
+    return [
+      {
+        types: ['textStyle'],
+        attributes: {
+          fontSize: {
+            default: null,
+            parseHTML: element => element.style.fontSize,
+            renderHTML: attributes => ({ style: `font-size: ${attributes.fontSize}` }),
+          },
+        },
+      },
+    ];
+  },
+});
 
 
 
@@ -25,9 +60,11 @@ const MenuBar = () => {
     return null;
   }
 
+
   return (
     <div className="h-full flex flex-col w-[calc(100%-4rem)] mx-auto">
       <div className='border my-[1rem] flex gap-[1rem] px-[1rem]'>
+
         <button
           onClick={() => editor.chain().focus().toggleBold().run()}
           disabled={!editor.can().chain().focus().toggleBold().run()}
@@ -35,6 +72,7 @@ const MenuBar = () => {
         >
           <img src="src/assets/1_MenuBar/1_bold.svg" alt='Bold' className='h-8'/> 
         </button>
+
         <button
           onClick={() => editor.chain().focus().toggleItalic().run()}
           disabled={!editor.can().chain().focus().toggleItalic().run()}
@@ -42,6 +80,7 @@ const MenuBar = () => {
         >
           <img src="src/assets/1_MenuBar/2_italic.svg" alt='Italics' className='h-8'/>
         </button>
+
         <button
           onClick={() => editor.chain().focus().toggleStrike().run()}
           disabled={
@@ -55,31 +94,28 @@ const MenuBar = () => {
         >
           <img src="src/assets/1_MenuBar/3_Strike.svg" alt='Strike' className='h-8'/>
         </button>
-        <button
-          onClick={() => editor.chain().focus().setParagraph().run()}
-          className={editor.isActive('paragraph') ? 'is-active' : ''}
-        >
-          Paragraph
-        </button>
+
         <button
           onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
           className={editor.isActive('heading', { level: 1 }) ? 'is-active' : ''}
         >
           H1
         </button>
+
         <button
           onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
           className={editor.isActive('heading', { level: 2 }) ? 'is-active' : ''}
         >
           H2
         </button>
+
         <button
           onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
           className={editor.isActive('heading', { level: 3 }) ? 'is-active' : ''}
         >
           H3
         </button>
-        
+
       </div>
       <div className="h-full">
         <EditorContent editor={editor} className="flex-grow outline-none" />
@@ -100,8 +136,14 @@ const Tiptap = () => {
     Italic,
     Strike,
     CodeBlock,
+    ListItem,
     OrderedList,
-    BulletList
+    BulletList,
+    Image,
+    History,
+    SVGNode,
+    Markdown,
+    CustomHTML
   ];
 
   const content = '<p>Hello World!</p>';
@@ -127,8 +169,6 @@ const Tiptap = () => {
   if (!editor) {
     return null; // Wait for the editor to initialize
   }
-
-  console.log("this is editor: " + editor);
 
 
   return (

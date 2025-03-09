@@ -1,6 +1,5 @@
 
 import { Provider } from 'jotai';
-import './App.css'
 import MdWrapper from './components/mdwrapper';
 import SideBar from './components/sidebar';
 

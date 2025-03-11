@@ -20,6 +20,8 @@ import React, { useCallback } from 'react';
 import { editorState } from '../store/atoms/editor';
 import { useAtomValue, useSetAtom } from 'jotai';
 
+import { Markdown } from 'tiptap-markdown';
+
 import { Node } from '@tiptap/core';
 
 
@@ -124,6 +126,10 @@ const Tiptap = () => {
     BulletList,
     History,
     CustomImage,
+    Markdown.configure({
+      html: true, // Allow GitHub-compatible HTML
+      transformPastedText: true,
+    }),
   ];
 
   const content = '<p>Hello World!</p>';

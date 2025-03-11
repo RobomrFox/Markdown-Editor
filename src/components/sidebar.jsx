@@ -5,10 +5,7 @@ const SideBar = () => {
 
     const editor = useAtomValue(editorState);
 
-    function getThis(event) {
-        // const value = event.currentTarget.innerHTML;
-        // console.log(value);
-        // editor.commands.insertContent(value);
+   
 
     editor.commands.insertContent({
         type: 'text',
@@ -28,12 +25,16 @@ const SideBar = () => {
         editor.commands.insertContent({
             type: 'image',
             attrs: {
-              src: '/src/assets/1_MenuBar/1_bold.svg', // Verify path
+              src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg', // Verify path
               width: 50,
               height: 50,
               style: 'display: inline;'
             }
           })
+      }
+
+      function insertGitHubImage() {
+        editor.commands.insertContent('![Bold Icon](src/assets/1_MenuBar/1_bold.svg)')
       }
       
     return (

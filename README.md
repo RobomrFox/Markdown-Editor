@@ -1,3 +1,3 @@
 # Markdown-Editor
 
-- It's a github profile editor
+- It's a github profile editor. 

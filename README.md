@@ -1,3 +1,3 @@
 # Markdown-Editor
 
-- Skibidi
+- It's a github profile editor

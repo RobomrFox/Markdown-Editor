@@ -13,6 +13,7 @@ import { OrderedList } from '@tiptap/extension-ordered-list'
 import { CodeBlock } from '@tiptap/extension-code-block'
 import { ListItem } from '@tiptap/extension-list-item'
 import History from '@tiptap/extension-history'
+import TextStyle from '@tiptap/extension-text-style'
 
 import '../tiptap-style.css'
 import { useEditor, EditorContent } from '@tiptap/react';
@@ -39,6 +40,7 @@ const CustomImage = Image.extend({
 
 
 const MenuBar = () => {
+
   const editor = useAtomValue(editorState);
 
   if (!editor) {
@@ -126,6 +128,7 @@ const Tiptap = () => {
     BulletList,
     History,
     CustomImage,
+    TextStyle,
     Markdown.configure({
       html: true, // Allow GitHub-compatible HTML
       transformPastedText: true,
@@ -159,7 +162,7 @@ const Tiptap = () => {
 
   return (
     <>
-      <MenuBar/>
+      <MenuBar />
     </>
   );
 };

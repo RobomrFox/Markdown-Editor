@@ -14,6 +14,7 @@ import { CodeBlock } from '@tiptap/extension-code-block'
 import { ListItem } from '@tiptap/extension-list-item'
 import History from '@tiptap/extension-history'
 import TextStyle from '@tiptap/extension-text-style'
+import { NodeSelection } from '@tiptap/pm/state'
 
 import '../tiptap-style.css'
 import { useEditor, EditorContent } from '@tiptap/react';
@@ -34,7 +35,10 @@ const CustomImage = Image.extend({
       height: { default: null }, // Allow height
       style: { default: 'display: inline-block' } // Add default styling
     }
-  }
+  },
+
+  selectable: true,
+  draggable: true,
 })
 
 
@@ -146,6 +150,28 @@ const Tiptap = () => {
       attributes: {
         class: 'focus:outline-none',
       },
+      handleClick(view, pos, event) {
+        console.log("Click detected at position:", pos);
+        const { state } = view;
+        const $pos = state.doc.resolve(pos);
+    
+        const nodeAfter = $pos.nodeAfter;
+        console.log("Node at position:", nodeAfter?.type?.name);
+        
+        if (nodeAfter && (nodeAfter.type.name === 'image' || nodeAfter.type.name === 'customImage')) {
+          console.log("Found image node, creating selection");
+          try {
+            const selection = NodeSelection.create(state.doc, pos);
+            view.dispatch(state.tr.setSelection(selection));
+            console.log("Selection applied successfully");
+            return true;
+          } catch (error) {
+            console.error("Error creating selection:", error);
+            return false;
+          }
+        }
+        return false;
+      }
     },
     onCreate: ({editor})=> {
       setEditor(editor);

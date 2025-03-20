@@ -15,6 +15,12 @@ html, body {
     cursor: pointer;
   }
   
+/* Add to your CSS */
+.ProseMirror .is-node-selected img {
+    outline: 2px solid #4dabf7;
+  }
+  
+
 
 /* [contenteditable]:focus {
     outline: none !important;

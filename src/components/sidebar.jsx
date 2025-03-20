@@ -75,7 +75,7 @@ const SideBar = () => {
 
         //Insert the svg
         editor.commands.insertContent({
-            type: 'image',
+            type: 'flexibleImage',
             attrs: {
                 src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg',
                 width: 50,
@@ -93,8 +93,17 @@ const SideBar = () => {
 
         if (node) {
             const posAfterNode = from + node.nodeSize;
-            console.log("Position after node:", posAfterNode);
+            
+            // Set cursor position after the image
             editor.commands.setTextSelection(posAfterNode);
+            
+            // Instead of a zero-width space, we can insert a normal space if needed
+            // and only if we're at the end of a paragraph or if the next character isn't a space
+            const nextChar = editor.state.doc.textBetween(posAfterNode, posAfterNode + 1);
+            if (nextChar === '' || nextChar !== ' ') {
+                // Optional: insert a normal space only if needed
+                editor.commands.insertContent(' ');
+            }
         }
 
 
@@ -119,7 +128,7 @@ const SideBar = () => {
                     <button onClick={
                         () => {
                             editor.commands.insertContent({
-                                type: 'image',
+                                type: 'flexibleImage',
                                 attrs: {
                                     src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/android/android-original.svg',
                                     width: 50,

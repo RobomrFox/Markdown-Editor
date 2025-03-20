@@ -24,7 +24,7 @@ import { useAtomValue, useSetAtom } from 'jotai';
 
 import { Markdown } from 'tiptap-markdown';
 
-import { Node } from '@tiptap/core';
+import { Node, mergeAttributes } from '@tiptap/core'
 
 
 const CustomImage = Image.extend({
@@ -39,6 +39,39 @@ const CustomImage = Image.extend({
 
   selectable: true,
   draggable: true,
+})
+
+
+const FlexibleImage = Node.create({
+  name: 'flexibleImage',
+  
+  group: 'inline',
+  
+  inline: true,
+  
+  atom: true,
+  
+  addAttributes() {
+    return {
+      src: { default: null },
+      alt: { default: null },
+      title: { default: null },
+      width: { default: null },
+      height: { default: null },
+      style: { default: 'display: inline-block;' } // Add this
+    }
+  },
+  
+  parseHTML() {
+    return [{ tag: 'img[src]' }]
+  },
+  
+  renderHTML({ HTMLAttributes }) {
+    return ['img', mergeAttributes(HTMLAttributes)]
+  },
+  
+  defining: false,
+  allowGapCursor: true,
 })
 
 
@@ -131,7 +164,7 @@ const Tiptap = () => {
     OrderedList,
     BulletList,
     History,
-    CustomImage,
+    FlexibleImage,
     TextStyle,
     Markdown.configure({
       html: true, // Allow GitHub-compatible HTML
@@ -158,7 +191,7 @@ const Tiptap = () => {
         const nodeAfter = $pos.nodeAfter;
         console.log("Node at position:", nodeAfter?.type?.name);
         
-        if (nodeAfter && (nodeAfter.type.name === 'image' || nodeAfter.type.name === 'customImage')) {
+        if (nodeAfter && (nodeAfter.type.name === 'flexibleImage')) {
           console.log("Found image node, creating selection");
           try {
             const selection = NodeSelection.create(state.doc, pos);

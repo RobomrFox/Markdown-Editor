@@ -1,5 +1,6 @@
 import { useAtomValue } from "jotai";
 import { editorState } from "../store/atoms/editor";
+import SearchBar from "./SearchBar";
 
 const SideBar = () => {
 
@@ -110,16 +111,12 @@ const SideBar = () => {
         editor.commands.focus();
     }
 
-
-
-    function insertGitHubImage() {
-        editor.commands.insertContent('![Bold Icon](src/assets/1_MenuBar/1_bold.svg)')
-    }
-
     return (
         <>
             <div className="w-full bg-slate-50 h-screen">
                 😒
+
+                <SearchBar></SearchBar>
 
                 <div className="flex flex-col my-auto h-full">
                     <button data-tip="2" onClick={(e) => { insertSVG(e) }}>

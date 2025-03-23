@@ -2,6 +2,8 @@ import { useAtomValue } from "jotai";
 import { editorState } from "../store/atoms/editor";
 import SearchBar from "./SearchBar";
 
+import { svgLinks } from "../db/svgLinks";
+
 const SideBar = () => {
 
     const editor = useAtomValue(editorState);
@@ -67,7 +69,7 @@ const SideBar = () => {
     //   }
 
 
-    function insertSVG(event) {
+    function insertSVG(event, link) {
         if (event) event.preventDefault();
 
         const { from } = editor.state.selection;
@@ -78,7 +80,7 @@ const SideBar = () => {
         editor.commands.insertContent({
             type: 'flexibleImage',
             attrs: {
-                src: 'https://cdn.jsdelivr.net/gh/RobomrFox/Markdown-Editor@main/hostedImages/AWS-Light.svg',
+                src: link,
                 width: 50,
                 height: 50,
                 style: 'display: inline-block'
@@ -94,10 +96,10 @@ const SideBar = () => {
 
         if (node) {
             const posAfterNode = from + node.nodeSize;
-            
+
             // Set cursor position after the image
             editor.commands.setTextSelection(posAfterNode);
-            
+
             // Instead of a zero-width space, we can insert a normal space if needed
             // and only if we're at the end of a paragraph or if the next character isn't a space
             const nextChar = editor.state.doc.textBetween(posAfterNode, posAfterNode + 1);
@@ -118,26 +120,20 @@ const SideBar = () => {
 
                 <SearchBar></SearchBar>
 
-                <div className="flex flex-col my-auto h-full">
-                    <button data-tip="2" onClick={(e) => { insertSVG(e) }}>
-                        <span className="text-[5rem]">😎</span>
-                    </button>
-                    <button onClick={
-                        () => {
-                            editor.commands.insertContent({
-                                type: 'flexibleImage',
-                                attrs: {
-                                    src: 'https://cdn.jsdelivr.net/gh/RobomrFox/Markdown-Editor@main/hostedImages/AWS-Dark.svg',
-                                    width: 50,
-                                    height: 50,
-                                    style: 'display: inline-block'
-                                }
-                            });
-                        }
-                    }>
-                        {/* https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/android/android-original.svg */}
-                        <span className="text-[5rem]">😾</span>
-                    </button>
+                <div className="w-full bg-slate-50 h-screen overflow-y-auto">
+                    <h2 className="text-lg font-bold p-4">SVG Links</h2>
+                    <div className="grid grid-cols-3 gap-4 p-4">
+                        {svgLinks.map(({ id, name, link }) => (
+                            <button
+                                key={id}
+                                onClick={() => insertSVG(event, link)}
+                                className="flex flex-col items-center p-2 hover:bg-gray-200"
+                            >
+                                <img src={link} alt={name} width="40" height="40" />
+                                <span className="text-sm mt-2">{name}</span>
+                            </button>
+                        ))}
+                    </div>
                 </div>
             </div>
         </>

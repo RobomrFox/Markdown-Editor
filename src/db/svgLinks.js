@@ -398,5 +398,7 @@ export const svgLinks = [
   { id: 397, name: 'Zig-Dark', link: 'https://cdn.jsdelivr.net/gh/RobomrFox/Markdown-Editor@main/hostedImages/Zig-Dark.svg' },
   { id: 398, name: 'Zig-Light', link: 'https://cdn.jsdelivr.net/gh/RobomrFox/Markdown-Editor@main/hostedImages/Zig-Light.svg' },
   { id: 399, name: 'p5js', link: 'https://cdn.jsdelivr.net/gh/RobomrFox/Markdown-Editor@main/hostedImages/p5js.svg' },
+  { id: 401, name: 'Zig-Light', link: 'https://cdn.jsdelivr.net/gh/RobomrFox/Markdown-Editor@main/hostedImages/Zig-Light.svg' },
+  { id: 402, name: 'p5js', link: 'https://cdn.jsdelivr.net/gh/RobomrFox/Markdown-Editor@main/hostedImages/p5js.svg' }
 ];
   

@@ -78,7 +78,7 @@ const SideBar = () => {
         editor.commands.insertContent({
             type: 'flexibleImage',
             attrs: {
-                src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg',
+                src: 'https://cdn.jsdelivr.net/gh/RobomrFox/Markdown-Editor@main/hostedImages/AWS-Light.svg',
                 width: 50,
                 height: 50,
                 style: 'display: inline-block'
@@ -127,7 +127,7 @@ const SideBar = () => {
                             editor.commands.insertContent({
                                 type: 'flexibleImage',
                                 attrs: {
-                                    src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/android/android-original.svg',
+                                    src: 'https://cdn.jsdelivr.net/gh/RobomrFox/Markdown-Editor@main/hostedImages/AWS-Dark.svg',
                                     width: 50,
                                     height: 50,
                                     style: 'display: inline-block'

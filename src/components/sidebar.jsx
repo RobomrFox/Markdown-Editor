@@ -4,6 +4,8 @@ import SearchBar from "./SearchBar";
 
 import { svgLinks } from "../db/svgLinks";
 
+import { CDNLinks } from "../db/Links";
+
 const SideBar = () => {
 
     const editor = useAtomValue(editorState);
@@ -68,13 +70,13 @@ const SideBar = () => {
     //     }
     //   }
 
-
+    {/*function expects event object as the parameter. Always!!!*/}
     function insertSVG(event, link) {
-        if (event) event.preventDefault();
+        if (event) event.preventDefault(); {/*Because of event.default*/}
 
         const { from } = editor.state.selection;
 
-        console.log("Starting POsiton", from);
+        console.log("Starting Positon", from);
 
         //Insert the svg
         editor.commands.insertContent({
@@ -88,26 +90,26 @@ const SideBar = () => {
         });
 
 
-        const resolvedPos = editor.state.doc.resolve(from);
-        const node = resolvedPos.nodeAfter;
+        // const resolvedPos = editor.state.doc.resolve(from);
+        // const node = resolvedPos.nodeAfter;
 
-        console.log(node);
+        // console.log(node);
 
 
-        if (node) {
-            const posAfterNode = from + node.nodeSize;
+        // if (node) {
+        //     const posAfterNode = from + node.nodeSize;
 
-            // Set cursor position after the image
-            editor.commands.setTextSelection(posAfterNode);
+        //     // Set cursor position after the image
+        //     editor.commands.setTextSelection(posAfterNode);
 
-            // Instead of a zero-width space, we can insert a normal space if needed
-            // and only if we're at the end of a paragraph or if the next character isn't a space
-            const nextChar = editor.state.doc.textBetween(posAfterNode, posAfterNode + 1);
-            if (nextChar === '' || nextChar !== ' ') {
-                // Optional: insert a normal space only if needed
-                editor.commands.insertContent(' ');
-            }
-        }
+        //     // Instead of a zero-width space, we can insert a normal space if needed
+        //     // and only if we're at the end of a paragraph or if the next character isn't a space
+        //     const nextChar = editor.state.doc.textBetween(posAfterNode, posAfterNode + 1);
+        //     if (nextChar === '' || nextChar !== ' ') {
+        //         // Optional: insert a normal space only if needed
+        //         editor.commands.insertContent(' ');
+        //     }
+        // }
 
 
         editor.commands.focus();
@@ -116,11 +118,11 @@ const SideBar = () => {
     return (
         <>
             <div className="w-full bg-slate-50 h-screen">
-                😒
+
 
                 <SearchBar></SearchBar>
 
-                <div className="w-full bg-slate-50 h-screen overflow-y-auto">
+                {/* <div className="w-full bg-slate-50 h-screen overflow-y-auto">
                     <h2 className="text-lg font-bold p-4">SVG Links</h2>
                     <div className="grid grid-cols-3 gap-4 p-4">
                         {svgLinks.map(({ id, name, link }) => (
@@ -134,14 +136,30 @@ const SideBar = () => {
                             </button>
                         ))}
                     </div>
-                </div>
+                </div> */}
+                {/**/}
+                
+                    <div className="grid grid-cols-3 p-3 h-full gap-3 w-full overflow-y-auto">
+                        {CDNLinks.map(function({id, name, link}) {
+                            return (
+                            <button 
+                                key={id} 
+                                onClick={() => {insertSVG(event, link)}}
+                                className="flex flex-col items-center p-2 hover:bg-gray-200 hover:rounded" 
+                            >
+                                <img width="40" src={link} alt={name}></img>
+                                {/*Text-wrapping or turncating or overflow-hidden? */}
+                                <span className="break-words text-center text-sm mt-2">{name}</span>
+                            </button>
+                        )
+                        })}
+                    </div>
+
+
             </div>
         </>
     )
 }
 
-function insertIcons(item) {
-    const value = item.target.value;
-}
 
 export default SideBar;

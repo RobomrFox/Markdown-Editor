@@ -1,12 +1,14 @@
-import { useAtomValue } from "jotai";
-import { editorState } from "../store/atoms/editor";
-import SearchBar from "./SearchBar";
+import { useAtom, useAtomValue } from "jotai";
+import { accordionState, editorState } from "../store/atoms/editor";
+import { SearchBar, Accordion } from "./IconsContainer";
 
 import { svgLinks } from "../db/svgLinks";
 
 import { CDNLinks } from "../db/Links";
 
 const SideBar = () => {
+
+    const [isSelected, setIsSelected] = useAtom(accordionState);
 
     const editor = useAtomValue(editorState);
 
@@ -117,7 +119,7 @@ const SideBar = () => {
 
     return (
         <>
-            <div className="w-full bg-slate-50 h-screen">
+            <div className="w-full bg-slate-50 h-screen flex flex-col">
 
 
                 <SearchBar></SearchBar>
@@ -139,19 +141,13 @@ const SideBar = () => {
                 </div> */}
                 {/**/}
                 
-                    <div className="grid grid-cols-3 p-3 h-full gap-3 w-full overflow-y-auto">
-                        {CDNLinks.map(function({id, name, link}) {
-                            return (
-                            <button 
-                                key={id} 
-                                onClick={() => {insertSVG(event, link)}}
-                                className="flex flex-col items-center p-2 hover:bg-gray-200 hover:rounded" 
-                            >
-                                <img width="40" src={link} alt={name}></img>
-                                {/*Text-wrapping or turncating or overflow-hidden? */}
-                                <span className="break-words text-center text-sm mt-2">{name}</span>
-                            </button>
-                        )
+                    <div className="p-3 gap-3 w-full overflow-y-auto">
+                        {CDNLinks.map(() => {
+                            return(
+                                <>
+                                    <Accordion id={"Programming Languages"} />
+                                </>
+                            )
                         })}
                     </div>
 
@@ -160,6 +156,21 @@ const SideBar = () => {
         </>
     )
 }
+
+
+// {CDNLinks.map(function({id, name, link}) {
+//     return (
+//     <button 
+//         key={id} 
+//         onClick={() => {insertSVG(event, link)}}
+//         className="flex flex-col items-center p-2 hover:bg-gray-200 hover:rounded" 
+//     >
+//         <img width="40" src={link} alt={name}></img>
+//         {/*Text-wrapping or turncating or overflow-hidden? */}
+//         <span className="break-words text-center text-sm mt-2">{name}</span>
+//     </button>
+// )
+// })}
 
 
 export default SideBar;

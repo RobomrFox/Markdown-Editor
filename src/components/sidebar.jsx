@@ -119,7 +119,14 @@ const SideBar = () => {
 
     return (
         <>
-            <div className="w-full bg-slate-50 h-screen flex flex-col">
+            <div className="w-full bg-slate-50 h-screen gap-4 flex flex-col">
+
+                <div className="p-4">
+                    <img 
+                    className="w-10"
+                    src="src/assets/3_Logo/Md.svg"
+                    ></img>
+                </div>
 
 
                 <SearchBar></SearchBar>
@@ -140,33 +147,211 @@ const SideBar = () => {
                     </div>
                 </div> */}
                 {/**/}
-                <Accordion id={"Programming Languages"} isSelected={isSelected["Programming Languages"]} content={
-                    <div className={`${isSelected ? "max-h-[40vh]" : "h-0"} grid grid-cols-3 justify-items-center p-3 gap-3 w-full overflow-y-auto overflow-x-hidden transition-all duration-300 border-b-1 border-gray-800/30`}>
-                    {CDNLinks.filter(({category})=> {
-                        return category === "Programming Languages";
-                    }).map(({id, name, link}) => {
-                        return(
-                        <>
-                            <button 
-                            key={id}
-                            onClick={() => {
-                                insertSVG(event, link)
-                            }}
-                            className="w-[4rem] flex flex-col items-center p-2 hover:bg-gray-200 hover:rounded"
-                            > {/*images with 4rem appears differently */}
-                                <img className="w-[3rem]" src={link} alt={name} />
-                                <h2 className="text-sm">{name}</h2>
-                            </button>
-                        </>
-                        )
-                    })}
-                </div>
-                }>
+                <div className="">
+
+                
+                    <Accordion id={"Programming Languages"} isSelected={isSelected["Programming Languages"]} content={
+                        <div className={`${isSelected["Programming Languages"] ? "max-h-[60vh]" : "max-h-0"} grid grid-cols-3 justify-items-center p-3 gap-3 w-full overflow-y-auto overflow-x-hidden transition-all duration-300 border-b-1 border-gray-800/30 hover:shadow-xs`}>
+                        {CDNLinks.filter(({category})=> {
+                            return category === "Programming Languages";
+                        }).map(({id, name, link}) => {
+                            return(
+                            <>
+                                <button 
+                                key={id}
+                                onClick={() => {
+                                    insertSVG(event, link)
+                                }}
+                                className="w-18 flex flex-col items-center p-2 hover:bg-gray-200 hover:rounded"
+                                > {/*images with 4rem appears differently */}
+                                    <img className="w-[3rem]" src={link} alt={name} />
+                                    <h2 className="text-sm">{name}</h2>
+                                </button>
+                            </>
+                            )
+                        })}
+                    </div>
+                    }>
+                
+                </Accordion>
+
+                <Accordion id={"Frontend Development"} isSelected={isSelected["Frontend Development"]} content={
+                        <div className={`${isSelected["Frontend Development"] ? "max-h-[60vh]" : "max-h-0"} grid grid-cols-3 justify-items-center p-3 gap-3 w-full overflow-y-auto overflow-x-hidden transition-all duration-300 border-b-1 border-gray-800/30 hover:shadow-xs`}>
+                        {CDNLinks.filter(({category})=> {
+                            return category === "Frontend Development";
+                        }).map(({id, name, link}) => {
+                            return(
+                            <>
+                                <button 
+                                key={id}
+                                onClick={() => {
+                                    insertSVG(event, link)
+                                }}
+                                className="w-[4rem] flex flex-col items-center p-2 hover:bg-gray-200 hover:rounded"
+                                > {/*images with 4rem appears differently */}
+                                    <img className="w-[3rem]" src={link} alt={name} />
+                                    <h2 className="text-sm">{name}</h2>
+                                </button>
+                            </>
+                            )
+                        })}
+                    </div>
+                    }>
+                
+                </Accordion>
+
+                <Accordion id={"Backend Development"} isSelected={isSelected["Backend Development"]} content={
+                        <div className={`${isSelected["Backend Development"] ? "max-h-[60vh]" : "max-h-0"} grid grid-cols-3 justify-items-center p-3 gap-3 w-full overflow-y-auto overflow-x-hidden transition-all duration-300 border-b-1 border-gray-800/30 hover:shadow-xs`}>
+                        {CDNLinks.filter(({category})=> {
+                            return category === "Backend Development";
+                        }).map(({id, name, link}) => {
+                            return(
+                            <>
+                                <button 
+                                key={id}
+                                onClick={() => {
+                                    insertSVG(event, link)
+                                }}
+                                className="w-[4rem] flex flex-col items-center p-2 hover:bg-gray-200 hover:rounded"
+                                > {/*images with 4rem appears differently */}
+                                    <img className="w-[3rem]" src={link} alt={name} />
+                                    <h2 className="text-sm">{name}</h2>
+                                </button>
+                            </>
+                            )
+                        })}
+                    </div>
+                    }>
+                
+                </Accordion>
+
+                <Accordion id={"Databases & Data Storage"} isSelected={isSelected["Databases & Data Storage"]} content={
+                        <div className={`${isSelected["Databases & Data Storage"] ? "max-h-[60vh]" : "max-h-0"} grid grid-cols-3 justify-items-center p-3 gap-3 w-full overflow-y-auto overflow-x-hidden transition-all duration-300 border-b-1 border-gray-800/30 hover:shadow-xs`}>
+                        {CDNLinks.filter(({category})=> {
+                            return category === "Databases & Data Storage";
+                        }).map(({id, name, link}) => {
+                            return(
+                            <>
+                                <button 
+                                key={id}
+                                onClick={() => {
+                                    insertSVG(event, link)
+                                }}
+                                className="w-[4rem] flex flex-col items-center p-2 hover:bg-gray-200 hover:rounded"
+                                > {/*images with 4rem appears differently */}
+                                    <img className="w-[3rem]" src={link} alt={name} />
+                                    <h2 className="text-sm">{name}</h2>
+                                </button>
+                            </>
+                            )
+                        })}
+                    </div>
+                    }>
+                
+                </Accordion>
+
+                <Accordion id={"Cloud & DevOps"} isSelected={isSelected["Cloud & DevOps"]} content={
+                        <div className={`${isSelected["Cloud & DevOps"] ? "max-h-[60vh]" : "max-h-0"} grid grid-cols-3 justify-items-center p-3 gap-3 w-full overflow-y-auto overflow-x-hidden transition-all duration-300 border-b-1 border-gray-800/30 hover:shadow-xs`}>
+                        {CDNLinks.filter(({category})=> {
+                            return category === "Cloud & DevOps";
+                        }).map(({id, name, link}) => {
+                            return(
+                            <>
+                                <button 
+                                key={id}
+                                onClick={() => {
+                                    insertSVG(event, link)
+                                }}
+                                className="w-[4rem] flex flex-col items-center p-2 hover:bg-gray-200 hover:rounded"
+                                > {/*images with 4rem appears differently */}
+                                    <img className="w-[3rem]" src={link} alt={name} />
+                                    <h2 className="text-sm">{name}</h2>
+                                </button>
+                            </>
+                            )
+                        })}
+                    </div>
+                    }>
+                
+                </Accordion>
+
+                <Accordion id={"Software & Tools"} isSelected={isSelected["Software & Tools"]} content={
+                        <div className={`${isSelected["Software & Tools"] ? "max-h-[60vh]" : "max-h-0"} grid grid-cols-3 justify-items-center p-3 gap-3 w-full overflow-y-auto overflow-x-hidden transition-all duration-300 border-b-1 border-gray-800/30 hover:shadow-xs`}>
+                        {CDNLinks.filter(({category})=> {
+                            return category === "Software & Tools";
+                        }).map(({id, name, link}) => {
+                            return(
+                            <>
+                                <button 
+                                key={id}
+                                onClick={() => {
+                                    insertSVG(event, link)
+                                }}
+                                className="w-[4rem] flex flex-col items-center p-2 hover:bg-gray-200 hover:rounded"
+                                > {/*images with 4rem appears differently */}
+                                    <img className="w-[3rem]" src={link} alt={name} />
+                                    <h2 className="text-sm">{name}</h2>
+                                </button>
+                            </>
+                            )
+                        })}
+                    </div>
+                    }>
+                
+                </Accordion>
+
+                <Accordion id={"Operating Systems"} isSelected={isSelected["Operating Systems"]} content={
+                        <div className={`${isSelected["Operating Systems"] ? "max-h-[60vh]" : "max-h-0"} grid grid-cols-3 justify-items-center p-3 gap-3 w-full overflow-y-auto overflow-x-hidden transition-all duration-300 border-b-1 border-gray-800/30 hover:shadow-xs`}>
+                        {CDNLinks.filter(({category})=> {
+                            return category === "Operating Systems";
+                        }).map(({id, name, link}) => {
+                            return(
+                            <>
+                                <button 
+                                key={id}
+                                onClick={() => {
+                                    insertSVG(event, link)
+                                }}
+                                className="w-[4rem] flex flex-col items-center p-2 hover:bg-gray-200 hover:rounded"
+                                > {/*images with 4rem appears differently */}
+                                    <img className="w-[3rem]" src={link} alt={name} />
+                                    <h2 className="text-sm">{name}</h2>
+                                </button>
+                            </>
+                            )
+                        })}
+                    </div>
+                    }>
+                
+                </Accordion>
+
+                <Accordion id={"Game Development"} isSelected={isSelected["Game Development"]} content={
+                        <div className={`${isSelected["Game Development"] ? "max-h-[60vh]" : "max-h-0"} grid grid-cols-3 justify-items-center p-3 gap-3 w-full overflow-y-auto overflow-x-hidden transition-all duration-300 border-b-1 border-gray-800/30 hover:shadow-xs hover:bg-gray-200/10`}>
+                        {CDNLinks.filter(({category})=> {
+                            return category === "Game Development";
+                        }).map(({id, name, link}) => {
+                            return(
+                            <>
+                                <button 
+                                key={id}
+                                onClick={() => {
+                                    insertSVG(event, link)
+                                }}
+                                className="w-[4rem] flex flex-col items-center p-2 hover:bg-gray-200 hover:rounded"
+                                > {/*images with 4rem appears differently */}
+                                    <img className="w-[3rem]" src={link} alt={name} />
+                                    <h2 className="text-sm">{name}</h2>
+                                </button>
+                            </>
+                            )
+                        })}
+                    </div>
+                    }>
                 
                 </Accordion>
                     
 
-
+                </div>
             </div>
         </>
     )

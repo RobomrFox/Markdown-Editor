@@ -3,10 +3,10 @@ import {atom} from 'jotai';
 export const editorState = atom(null);
 
 export const accordionState = atom({
-    "Programming Languages": true,
-    "Frontend Development": true,  // This one is open
+    "Programming Languages": false,
+    "Frontend Development": false,  
     "Backend Development": false,
-    "Databases & Data Storage": true, // This one is also open
+    "Databases & Data Storage": false, 
     "Cloud & DevOps": false,
     "Software & Tools": false,
     "Operating Systems": false,

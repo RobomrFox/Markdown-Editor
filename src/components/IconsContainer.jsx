@@ -1,3 +1,5 @@
+import { useSetAtom } from "jotai";
+import { accordionState } from "../store/atoms/editor";
 
 
 const SearchBar = () => {
@@ -17,11 +19,21 @@ const SearchBar = () => {
 };
 
 const Accordion = ({ id, content, isSelected } ) => {
+    const setIsSelected = useSetAtom(accordionState);
     return(
         <>
-            <button>
+            <button 
+            onClick={() => {
+                setIsSelected((prev) => ({
+                    ...prev,
+                    [id]: !prev[id]
+                }))
+            }}
+            className="focus-within:cursor-pointer"
+            >
                 <h1>{id}</h1>
             </button>
+            
             {isSelected && content}
         </>
     )

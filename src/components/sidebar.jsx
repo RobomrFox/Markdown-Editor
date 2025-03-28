@@ -140,16 +140,31 @@ const SideBar = () => {
                     </div>
                 </div> */}
                 {/**/}
+                <Accordion id={"Programming Languages"} isSelected={isSelected["Programming Languages"]} content={
+                    <div className={`${isSelected ? "max-h-[40vh]" : "h-0"} grid grid-cols-3 justify-items-center p-3 gap-3 w-full overflow-y-auto overflow-x-hidden transition-all duration-300 border-b-1 border-gray-800/30`}>
+                    {CDNLinks.filter(({category})=> {
+                        return category === "Programming Languages";
+                    }).map(({id, name, link}) => {
+                        return(
+                        <>
+                            <button 
+                            key={id}
+                            onClick={() => {
+                                insertSVG(event, link)
+                            }}
+                            className="w-[4rem] flex flex-col items-center p-2 hover:bg-gray-200 hover:rounded"
+                            > {/*images with 4rem appears differently */}
+                                <img className="w-[3rem]" src={link} alt={name} />
+                                <h2 className="text-sm">{name}</h2>
+                            </button>
+                        </>
+                        )
+                    })}
+                </div>
+                }>
                 
-                    <div className="p-3 gap-3 w-full overflow-y-auto">
-                        {CDNLinks.map(() => {
-                            return(
-                                <>
-                                    <Accordion id={"Programming Languages"} />
-                                </>
-                            )
-                        })}
-                    </div>
+                </Accordion>
+                    
 
 
             </div>

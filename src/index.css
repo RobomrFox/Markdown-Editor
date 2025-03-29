@@ -19,9 +19,24 @@ html, body {
 .ProseMirror .is-node-selected img {
     outline: 2px solid #4dabf7;
   }
+
   
 
 
 /* [contenteditable]:focus {
     outline: none !important;
   } */
+
+
+  /* Hide Scroll Bar*/
+
+  /* Hide scrollbar for Webkit browsers (Chrome, Safari, Opera) */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}

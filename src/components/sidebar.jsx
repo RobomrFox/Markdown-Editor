@@ -119,7 +119,8 @@ const SideBar = () => {
 
     return (
         <>
-            <div className="w-full bg-slate-50 h-screen gap-4 flex flex-col">
+            <div className="w-full bg-slate-50 h-screen gap-4 flex flex-col border-r-1 border-gray-950/30">
+        
 
                 <div className="p-4">
                     <img 
@@ -147,11 +148,11 @@ const SideBar = () => {
                     </div>
                 </div> */}
                 {/**/}
-                <div className="">
+                <div className="overflow-y-auto max-h-full">
 
                 
                     <Accordion id={"Programming Languages"} isSelected={isSelected["Programming Languages"]} content={
-                        <div className={`${isSelected["Programming Languages"] ? "max-h-[60vh]" : "max-h-0"} grid grid-cols-3 justify-items-center p-3 gap-3 w-full overflow-y-auto overflow-x-hidden transition-all duration-300 border-b-1 border-gray-800/30 hover:shadow-xs`}>
+                        <div className={`${isSelected["Programming Languages"] ? "max-h-[60vh]" : "max-h-0"} grid grid-cols-3 justify-items-center p-3 gap-3 w-full overflow-y-auto overflow-x-hidden transition-all duration-300 border-b-1 border-gray-800/30 hover:shadow-xs hide-scrollbar`}>
                         {CDNLinks.filter(({category})=> {
                             return category === "Programming Languages";
                         }).map(({id, name, link}) => {
@@ -176,7 +177,7 @@ const SideBar = () => {
                 </Accordion>
 
                 <Accordion id={"Frontend Development"} isSelected={isSelected["Frontend Development"]} content={
-                        <div className={`${isSelected["Frontend Development"] ? "max-h-[60vh]" : "max-h-0"} grid grid-cols-3 justify-items-center p-3 gap-3 w-full overflow-y-auto overflow-x-hidden transition-all duration-300 border-b-1 border-gray-800/30 hover:shadow-xs`}>
+                        <div className={`${isSelected["Frontend Development"] ? "max-h-[60vh]" : "max-h-0"} grid grid-cols-3 justify-items-center p-3 gap-3 w-full overflow-y-auto overflow-x-hidden transition-all duration-300 border-b-1 border-gray-800/30 hover:shadow-xs hide-scrollbar`}>
                         {CDNLinks.filter(({category})=> {
                             return category === "Frontend Development";
                         }).map(({id, name, link}) => {
@@ -201,7 +202,7 @@ const SideBar = () => {
                 </Accordion>
 
                 <Accordion id={"Backend Development"} isSelected={isSelected["Backend Development"]} content={
-                        <div className={`${isSelected["Backend Development"] ? "max-h-[60vh]" : "max-h-0"} grid grid-cols-3 justify-items-center p-3 gap-3 w-full overflow-y-auto overflow-x-hidden transition-all duration-300 border-b-1 border-gray-800/30 hover:shadow-xs`}>
+                        <div className={`${isSelected["Backend Development"] ? "max-h-[60vh]" : "max-h-0"} grid grid-cols-3 justify-items-center p-3 gap-3 w-full overflow-y-auto overflow-x-hidden transition-all duration-300 border-b-1 border-gray-800/30 hover:shadow-xs hide-scrollbar`}>
                         {CDNLinks.filter(({category})=> {
                             return category === "Backend Development";
                         }).map(({id, name, link}) => {
@@ -226,7 +227,7 @@ const SideBar = () => {
                 </Accordion>
 
                 <Accordion id={"Databases & Data Storage"} isSelected={isSelected["Databases & Data Storage"]} content={
-                        <div className={`${isSelected["Databases & Data Storage"] ? "max-h-[60vh]" : "max-h-0"} grid grid-cols-3 justify-items-center p-3 gap-3 w-full overflow-y-auto overflow-x-hidden transition-all duration-300 border-b-1 border-gray-800/30 hover:shadow-xs`}>
+                        <div className={`${isSelected["Databases & Data Storage"] ? "max-h-[60vh]" : "max-h-0"} grid grid-cols-3 justify-items-center p-3 gap-3 w-full overflow-y-auto overflow-x-hidden transition-all duration-300 border-b-1 border-gray-800/30 hover:shadow-xs hide-scrollbar`}>
                         {CDNLinks.filter(({category})=> {
                             return category === "Databases & Data Storage";
                         }).map(({id, name, link}) => {
@@ -251,7 +252,7 @@ const SideBar = () => {
                 </Accordion>
 
                 <Accordion id={"Cloud & DevOps"} isSelected={isSelected["Cloud & DevOps"]} content={
-                        <div className={`${isSelected["Cloud & DevOps"] ? "max-h-[60vh]" : "max-h-0"} grid grid-cols-3 justify-items-center p-3 gap-3 w-full overflow-y-auto overflow-x-hidden transition-all duration-300 border-b-1 border-gray-800/30 hover:shadow-xs`}>
+                        <div className={`${isSelected["Cloud & DevOps"] ? "max-h-[60vh]" : "max-h-0"} grid grid-cols-3 justify-items-center p-3 gap-3 w-full overflow-y-auto overflow-x-hidden transition-all duration-300 border-b-1 border-gray-800/30 hover:shadow-xs hide-scrollbar`}>
                         {CDNLinks.filter(({category})=> {
                             return category === "Cloud & DevOps";
                         }).map(({id, name, link}) => {
@@ -276,7 +277,7 @@ const SideBar = () => {
                 </Accordion>
 
                 <Accordion id={"Software & Tools"} isSelected={isSelected["Software & Tools"]} content={
-                        <div className={`${isSelected["Software & Tools"] ? "max-h-[60vh]" : "max-h-0"} grid grid-cols-3 justify-items-center p-3 gap-3 w-full overflow-y-auto overflow-x-hidden transition-all duration-300 border-b-1 border-gray-800/30 hover:shadow-xs`}>
+                        <div className={`${isSelected["Software & Tools"] ? "max-h-[60vh]" : "max-h-0"} grid grid-cols-3 justify-items-center p-3 gap-3 w-full overflow-y-auto overflow-x-hidden transition-all duration-300 border-b-1 border-gray-800/30 hover:shadow-xs hide-scrollbar`}>
                         {CDNLinks.filter(({category})=> {
                             return category === "Software & Tools";
                         }).map(({id, name, link}) => {
@@ -301,7 +302,7 @@ const SideBar = () => {
                 </Accordion>
 
                 <Accordion id={"Operating Systems"} isSelected={isSelected["Operating Systems"]} content={
-                        <div className={`${isSelected["Operating Systems"] ? "max-h-[60vh]" : "max-h-0"} grid grid-cols-3 justify-items-center p-3 gap-3 w-full overflow-y-auto overflow-x-hidden transition-all duration-300 border-b-1 border-gray-800/30 hover:shadow-xs`}>
+                        <div className={`${isSelected["Operating Systems"] ? "max-h-[60vh]" : "max-h-0"} grid grid-cols-3 justify-items-center p-3 gap-3 w-full overflow-y-auto overflow-x-hidden transition-all duration-300 border-b-1 border-gray-800/30 hover:shadow-xs hide-scrollbar`}>
                         {CDNLinks.filter(({category})=> {
                             return category === "Operating Systems";
                         }).map(({id, name, link}) => {
@@ -326,7 +327,7 @@ const SideBar = () => {
                 </Accordion>
 
                 <Accordion id={"Game Development"} isSelected={isSelected["Game Development"]} content={
-                        <div className={`${isSelected["Game Development"] ? "max-h-[60vh]" : "max-h-0"} grid grid-cols-3 justify-items-center p-3 gap-3 w-full overflow-y-auto overflow-x-hidden transition-all duration-300 border-b-1 border-gray-800/30 hover:shadow-xs hover:bg-gray-200/10`}>
+                        <div className={`${isSelected["Game Development"] ? "max-h-[60vh]" : "max-h-0"} grid grid-cols-3 justify-items-center p-3 gap-3 w-full overflow-y-auto overflow-x-hidden transition-all duration-300 border-b-1 border-gray-800/30 hover:shadow-xs hover:bg-gray-200/10 hide-scrollbar`}>
                         {CDNLinks.filter(({category})=> {
                             return category === "Game Development";
                         }).map(({id, name, link}) => {

@@ -29,12 +29,12 @@ const Accordion = ({ id, content, isSelected }) => {
                         [id]: !prev[id]
                     }))
                 }}
-                className="focus-within:cursor-pointer flex items-center w-full hover:bg-gray-400/20 cursor-pointer border-b-1 border-b-gray-800/30"
+                className="focus-within:cursor-pointer flex items-center w-[90%] mx-auto hover:bg-gray-400/20 cursor-pointer rounded"
             >
-                <h1 className="ml-4 text-base my-1">{id}</h1>
+                <h1 className="ml-1 text-base my-1">{id}</h1>
 
                 <svg
-                className={`size-4 ml-auto mr-1 ${isSelected ? " rotate-180 " : " "}`}
+                className={`size-4 ml-auto mr-1 transition-transform transform duration-200${isSelected ? " rotate-180 " : " "}`}
                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                 </svg>

@@ -148,7 +148,7 @@ const SideBar = () => {
                     </div>
                 </div> */}
                 {/**/}
-                <div className="overflow-y-auto max-h-full">
+                <div className="overflow-y-auto max-h-full w-full mx-auto">
 
                 
                     <Accordion id={"Programming Languages"} isSelected={isSelected["Programming Languages"]} content={

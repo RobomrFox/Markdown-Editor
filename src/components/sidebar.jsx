@@ -1,8 +1,6 @@
 import { useAtom, useAtomValue } from "jotai";
 import { accordionState, editorState } from "../store/atoms/editor";
-import { SearchBar, Accordion } from "./IconsContainer";
-
-import { svgLinks } from "../db/svgLinks";
+import { SearchBar, Accordion } from "./SideBarComponent";
 
 import { CDNLinks } from "../db/Links";
 
@@ -152,7 +150,9 @@ const SideBar = () => {
 
                 
                     <Accordion id={"Programming Languages"} isSelected={isSelected["Programming Languages"]} content={
-                        <div className={`${isSelected["Programming Languages"] ? "max-h-[60vh]" : "max-h-0"} grid grid-cols-3 justify-items-center p-3 gap-3 w-full overflow-y-auto overflow-x-hidden transition-all duration-300 border-b-1 border-gray-800/30 hover:shadow-xs hide-scrollbar`}>
+                        <div className={`${isSelected["Programming Languages"] ? "max-h-[60vh]" : "max-h-0"} grid grid-cols-3 
+                        justify-items-center p-3 gap-3 w-full overflow-y-auto overflow-x-hidden transition-all 
+                        duration-300 border-b-1 border-slate-300 hover:shadow-xs hide-scrollbar`}>
                         {CDNLinks.filter(({category})=> {
                             return category === "Programming Languages";
                         }).map(({id, name, link}) => {
@@ -163,7 +163,7 @@ const SideBar = () => {
                                 onClick={() => {
                                     insertSVG(event, link)
                                 }}
-                                className="w-18 flex flex-col items-center p-2 hover:bg-gray-200 hover:rounded"
+                                className="w-18 flex flex-col items-center p-2 hover:bg-slate-200 hover:rounded"
                                 > {/*images with 4rem appears differently */}
                                     <img className="w-[3rem]" src={link} alt={name} />
                                     <h2 className="text-sm">{name}</h2>

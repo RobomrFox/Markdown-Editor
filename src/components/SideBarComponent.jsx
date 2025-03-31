@@ -8,21 +8,19 @@ const SearchBar = () => {
     return (
       <div className="group relative bg-white/90 backdrop-blur-md border border-slate-200 p-2 my-4 rounded-lg flex gap-2 items-center max-w-[90%] mx-auto transition-all duration-300 shadow-pink-300/50 hover:shadow-xs focus-within:shadow-xs">
 
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-icon lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
+        className="lucide lucide-search-icon lucide-search hover:scale-120 transition-all duration-150"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
   
         {/* Input Field */}
         <input
           type="text"
           id="search-field"
           placeholder="Search..." // Added placeholder
-          className="outline-none bg-transparent text-base text-slate-700 flex-grow px-1 py-0.5" // Adjusted padding
+          className="outline-none bg-transparent text-base text-slate-700 flex-grow px-1 py-0.5 max-w-[90%]" // Adjusted padding
         />
   
-        {/* Clear Button (Optional, appears when typing) */}
-        {/* You would need state to manage the input value and show/hide this */}
-        {/* <button className="p-1 rounded-full hover:bg-slate-100 text-slate-400 mr-1">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-        </button> */}
       </div>
     );
   };

@@ -42,9 +42,11 @@ const FlexibleImage = Node.create({
       src: { default: null },
       alt: { default: null },
       title: { default: null },
-      width: { default: null },
-      height: { default: null },
-      style: { default: 'display: inline-block;' } // Add this
+      width: { default: '50' }, // Set default width
+      height: { default: '50' }, // Set default height
+      style: {
+        default: 'display: inline-block; width: 50px; height: 50px;' // Enforce size in style
+      }
     }
   },
   

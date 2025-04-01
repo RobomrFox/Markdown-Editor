@@ -23,3 +23,26 @@
 .ProseMirror pre {
     @apply bg-gray-100 p-4 rounded-md;
 }
+
+.ProseMirror {
+    position: relative;
+    z-index: 1;
+}
+
+/* Add to your CSS file */
+[data-draggable-icon] {
+    cursor: grab;
+}
+
+[data-draggable-icon]:active {
+    cursor: grabbing;
+}
+
+[data-dropzone] {
+    transition: background-color 0.2s ease;
+}
+
+[data-dropzone].active {
+    background-color: rgba(0, 0, 0, 0.05);
+    outline: 2px dashed #3b82f6;
+}

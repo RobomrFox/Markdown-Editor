@@ -34,11 +34,13 @@
     "@tiptap/extension-underline": "^2.11.5",
     "@tiptap/pm": "^2.11.5",
     "@tiptap/react": "^2.11.5",
+    "emoji-picker-react": "^4.12.2",
     "html-react-parser": "^5.2.2",
     "jotai": "^2.12.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
+    "react-toastify": "^11.0.5",
     "tailwindcss": "^4.0.9",
     "tiptap-markdown": "^0.8.10"
   },

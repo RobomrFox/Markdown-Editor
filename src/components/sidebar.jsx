@@ -89,6 +89,34 @@ const SideBar = () => {
             <SearchBar />
 
             <div className="overflow-y-auto max-h-full w-full mx-auto custom-scrollbar">
+
+                <Accordion
+                    id={"Templates"}
+                    isSelected={isSelected["Templates"]}
+                    content={
+                        <div className={`${isSelected["Templates"] ? "max-h-[60vh]" : "max-h-0"} grid grid-cols-2 justify-items-center p-2 gap-2 w-full overflow-y-auto overflow-x-hidden transition-all duration-300 border-b-1 border-gray-800/30 hover:shadow-xs hide-scrollbar`}>
+                            {CDNLinks.filter(({category}) => category === "Templates").map(({id, name, link, content}) => (
+                                <div
+                                    key={id}
+                                    className="p-4 w-full border rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                                    onClick={() => {
+                                        // Copy template content to clipboard
+                                        navigator.clipboard.writeText(content);
+                                        // Or alternatively, open the raw template
+                                        // window.open(link, '_blank');
+                                    }}
+                                >
+                                    <h3 className="font-medium text-center">{name}</h3>
+                                    {/* Optional: Add a preview of the template */}
+                                    <div className="text-xs text-gray-500 mt-2 line-clamp-3">
+                                        {content.substring(0, 100)}...
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    }
+                />
+
                 <Accordion id={"Programming Languages"} isSelected={isSelected["Programming Languages"]} content={
                     <div className={`${isSelected["Programming Languages"] ? "max-h-[60vh]" : "max-h-0"} grid grid-cols-3 
           justify-items-center p-3 gap-3 w-full overflow-y-auto overflow-x-hidden transition-all 

@@ -2,6 +2,8 @@
 import { Provider } from 'jotai';
 import MdWrapper from './components/mdwrapper';
 import SideBar from './components/sidebar';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
@@ -16,7 +18,10 @@ function App() {
 
       <div className="card col-span-2 md:col-span-3 lg:col-span-4 overflow-auto">
         <MdWrapper />
+        <ToastContainer />
+
       </div>
+
     </div>
     
     </Provider>

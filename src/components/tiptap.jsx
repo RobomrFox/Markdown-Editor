@@ -21,10 +21,13 @@ import { useEditor, EditorContent } from '@tiptap/react';
 import React, { useCallback } from 'react';
 import { editorState } from '../store/atoms/editor';
 import { useAtomValue, useSetAtom } from 'jotai';
+import EmojiPicker from 'emoji-picker-react'
 
 import { Markdown } from 'tiptap-markdown';
+import { FaBold, FaItalic, FaStrikethrough, FaUnderline, FaSmile, FaHighlighter, FaMinus, FaImage } from 'react-icons/fa'
 
 import { Node, mergeAttributes } from '@tiptap/core'
+import { useState } from 'react'
 
 
 
@@ -66,10 +69,17 @@ const FlexibleImage = Node.create({
 
 const MenuBar = () => {
 
-  const editor = useAtomValue(editorState);
-
+  const editor = useAtomValue(editorState)
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false)
+    
+  
   if (!editor) {
     return null;
+  }
+  
+  const addEmoji = (emoji) => {
+    editor.chain().focus().insertContent(emoji.emoji).run()
+    setShowEmojiPicker(false)
   }
 
   return (
@@ -162,7 +172,22 @@ const MenuBar = () => {
         <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
       </svg>
     </button>
+    <div className="relative">
+            <button
+              onClick={() => setShowEmojiPicker((prev) => !prev)}
+              className="p-2 rounded hover:bg-slate-200"
+            >
+              <FaSmile size={23} />
+            </button>
+            {showEmojiPicker && (
+              <div className="absolute z-10">
+                <EmojiPicker onEmojiClick={addEmoji} />
+              </div>
+            )}
+          </div>
   </div>
+  
+        
   
   <div className="h-full">
     <EditorContent editor={editor} className="flex-grow outline-none" />

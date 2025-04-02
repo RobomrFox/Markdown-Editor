@@ -1,6 +1,10 @@
+// MdWrapper.js
+import { useCallback } from 'react';
+import { useAtomValue } from 'jotai';
 import Tiptap from "./tiptap";
 import { DndContext, closestCenter } from '@dnd-kit/core';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
+import { editorState } from "../store/atoms/editor";
 
 const DndProvider = ({ children }) => {
     return (
@@ -14,6 +18,27 @@ const DndProvider = ({ children }) => {
 };
 
 const MdWrapper = () => {
+    const editor = useAtomValue(editorState);
+
+    const handleCopy = useCallback(async () => {
+        try {
+            if (!editor) {
+                alert('Editor not initialized');
+                return;
+            }
+            
+            // Get Markdown content from the editor
+            const markdownContent = editor.storage.markdown.getMarkdown();
+            
+            // Copy to clipboard
+            await navigator.clipboard.writeText(markdownContent);
+            alert('Content copied to clipboard!');
+        } catch (error) {
+            console.error('Failed to copy:', error);
+            alert('Failed to copy content');
+        }
+    }, [editor]);
+
     return (
         <DndProvider>
             <div className="flex justify-around mt-4 mr-4 w-120 ml-auto">
@@ -34,6 +59,7 @@ const MdWrapper = () => {
                 </button>
 
                 <button
+                    onClick={handleCopy}
                     className="flex gap-2 items-center border-2 p-1 cursor-pointer bg-green-400/70 hover:bg-green-400/80 transition-all ease-in-out duration-200 active:scale-95"
                 >
                     <span>Copy</span>

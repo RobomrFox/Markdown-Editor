@@ -4,6 +4,7 @@ import { SearchBar, Accordion } from "./SideBarComponent";
 import { CDNLinks } from "../db/Links";
 import { useDraggable } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
+import {templates} from "../db/Templates.js";
 
 const DraggableImage = ({ id, name, link, insertSVG }) => {
     const { attributes, listeners, setNodeRef, transform } = useDraggable({
@@ -95,23 +96,33 @@ const SideBar = () => {
                     isSelected={isSelected["Templates"]}
                     content={
                         <div className={`${isSelected["Templates"] ? "max-h-[60vh]" : "max-h-0"} grid grid-cols-2 justify-items-center p-2 gap-2 w-full overflow-y-auto overflow-x-hidden transition-all duration-300 border-b-1 border-gray-800/30 hover:shadow-xs hide-scrollbar`}>
-                            {CDNLinks.filter(({category}) => category === "Templates").map(({id, name, link, content}) => (
-                                <div
-                                    key={id}
-                                    className="p-4 w-full border rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                                    onClick={() => {
-                                        // Copy template content to clipboard
-                                        navigator.clipboard.writeText(content);
-                                        // Or alternatively, open the raw template
-                                        // window.open(link, '_blank');
+                            {templates.map((template) => (
+                                <button
+                                    key={template.id}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        // Get your Tiptap editor instance (adjust based on how you access it)
+                                        const editor = window.editor; // or from props/context/store
+
+                                        // Clear existing content
+                                        editor.commands.clearContent();
+
+                                        // Insert the template content
+                                        editor.commands.insertContent(template.content);
+
+                                        // Focus the editor at the end
+                                        editor.commands.focus('end');
                                     }}
+                                    className="w-full flex flex-col items-center p-2 hover:bg-gray-200 hover:rounded dark:hover:bg-gray-800 transition-colors"
                                 >
-                                    <h3 className="font-medium text-center">{name}</h3>
-                                    {/* Optional: Add a preview of the template */}
-                                    <div className="text-xs text-gray-500 mt-2 line-clamp-3">
-                                        {content.substring(0, 100)}...
+                                    {/* Template Preview Box */}
+                                    <div className="w-full h-24 bg-white dark:bg-gray-700 border rounded-md mb-2 overflow-hidden flex items-center justify-center p-2">
+            <pre className="text-xs text-gray-500 dark:text-gray-400 text-center whitespace-pre-wrap overflow-hidden line-clamp-3">
+              {template.content.substring(0, 100)}{template.content.length > 100 ? "..." : ""}
+            </pre>
                                     </div>
-                                </div>
+                                    <h2 className="text-sm text-center font-medium">{template.name}</h2>
+                                </button>
                             ))}
                         </div>
                     }

@@ -2,7 +2,7 @@ import { useSetAtom } from "jotai";
 import { accordionState } from "../store/atoms/editor";
 
 
-const SearchBar = () => {
+const SearchBar = ({value, onChange}) => {
     console.log('Rendering SearchBar');
   
     return (
@@ -17,7 +17,9 @@ const SearchBar = () => {
         <input
           type="text"
           id="search-field"
-          placeholder="Search..." // Added placeholder
+          placeholder="Search..."
+          value={value}
+          onChange={onChange}
           className="outline-none bg-transparent text-base text-slate-700 flex-grow px-1 py-0.5 max-w-[90%]" // Adjusted padding
         />
   

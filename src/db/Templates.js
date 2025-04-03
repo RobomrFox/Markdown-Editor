@@ -27,9 +27,9 @@ export const templates = [
         id: "github-profile-2",
         name: "Minimal Profile",
         category: "Templates",
-        content: `### Hey there 👋 
+        content: `### Hey there! 👋 
         
-! I'm a developer who loves building things with:
+ I'm a developer who loves building things with:
   - JavaScript/TypeScript
   - React
   - Node.js

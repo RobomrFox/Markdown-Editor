@@ -5,27 +5,8 @@ import { CDNLinks } from "../db/Links";
 import { useDraggable } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
 import {templates} from "../db/Templates.js";
+import { useState } from "react";
 
-
-function MainComponent() {
-    const editor = useAtomValue(editorState);
-
-    if (!editor) {
-        console.warn(`Editor is not initialized yet.`)
-        return (
-            <div>
-                Loading ...
-            </div>
-        )
-    }
-
-    return (
-        <div className="flex flex-col w-full h-full">
-            <SideBar />
-            <Tiptap editor={editor} />
-        </div>
-    )
-}
 
 
 const DraggableImage = ({ id, name, link, insertSVG }) => {
@@ -49,6 +30,8 @@ const DraggableImage = ({ id, name, link, insertSVG }) => {
         e.dataTransfer.effectAllowed = 'copy';
     };
 
+   
+
     return (
         <div
             ref={setNodeRef}
@@ -69,6 +52,8 @@ const DraggableImage = ({ id, name, link, insertSVG }) => {
 const SideBar = () => {
     const [isSelected, setIsSelected] = useAtom(accordionState);
     const editor = useAtomValue(editorState);
+
+    const [searchQuery, setSearchQuery] = useState("");
 
     if (!editor) {
         console.warn(`Editor is not initialized yet.`)
@@ -99,6 +84,11 @@ const SideBar = () => {
         editor.commands.focus();
     }
 
+
+    const filteredIcons = CDNLinks.filter((item) => {
+        return item.name.toLowerCase().includes(searchQuery.toLowerCase());
+    })
+
     return (
         <div className="w-full bg-slate-50 h-screen gap-4 flex flex-col border-r-1 border-gray-950/30">
             <div className="p-4">
@@ -109,9 +99,23 @@ const SideBar = () => {
                 />
             </div>
 
-            <SearchBar />
+            <SearchBar value={searchQuery} onChange={(e)=> {setSearchQuery(e.target.value)}} />
 
             <div className="overflow-y-auto max-h-full w-full mx-auto custom-scrollbar">
+            {searchQuery.trim() !== "" ?
+            (<div className="grid grid-cols-3 justify-items-center p-3 gap-3 w-full overflow-y-auto overflow-x-hidden transition-all duration-300">
+                {filteredIcons.map(({ id, name, link }) => (
+                  <div
+                    key={id}
+                    onClick={(e) => insertSVG(e, link)}
+                    className="w-18 flex flex-col items-center p-2 hover:bg-slate-200 hover:rounded cursor-pointer"
+                  >
+                    <img className="w-[3rem]" src={link} alt={name} />
+                    <h2 className="text-sm">{name}</h2>
+                  </div>
+                ))}
+              </div>) : (
+          <>
 
                 <Accordion
                     id={"Templates"}
@@ -262,6 +266,9 @@ const SideBar = () => {
                         ))}
                     </div>
                 } />
+                </>
+                )}
+
             </div>
         </div>
     )

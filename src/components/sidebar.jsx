@@ -6,6 +6,28 @@ import { useDraggable } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
 import {templates} from "../db/Templates.js";
 
+
+function MainComponent() {
+    const editor = useAtomValue(editorState);
+
+    if (!editor) {
+        console.warn(`Editor is not initialized yet.`)
+        return (
+            <div>
+                Loading ...
+            </div>
+        )
+    }
+
+    return (
+        <div className="flex flex-col w-full h-full">
+            <SideBar />
+            <Tiptap editor={editor} />
+        </div>
+    )
+}
+
+
 const DraggableImage = ({ id, name, link, insertSVG }) => {
     const { attributes, listeners, setNodeRef, transform } = useDraggable({
         id: `draggable-${id}`,
@@ -101,25 +123,24 @@ const SideBar = () => {
                                     key={template.id}
                                     onClick={(e) => {
                                         e.preventDefault();
-                                        // Get your Tiptap editor instance (adjust based on how you access it)
-                                        const editor = window.editor; // or from props/context/store
+                                        if (!editor) {
+                                            console.error("Editor not available");
+                                            return;
+                                        }
 
-                                        // Clear existing content
-                                        editor.commands.clearContent();
-
-                                        // Insert the template content
-                                        editor.commands.insertContent(template.content);
-
-                                        // Focus the editor at the end
-                                        editor.commands.focus('end');
+                                        editor.chain()
+                                            .clearContent()
+                                            .insertContent(template.content)
+                                            .focus('end')
+                                            .run();
                                     }}
                                     className="w-full flex flex-col items-center p-2 hover:bg-gray-200 hover:rounded dark:hover:bg-gray-800 transition-colors"
                                 >
-                                    {/* Template Preview Box */}
                                     <div className="w-full h-24 bg-white dark:bg-gray-700 border rounded-md mb-2 overflow-hidden flex items-center justify-center p-2">
-            <pre className="text-xs text-gray-500 dark:text-gray-400 text-center whitespace-pre-wrap overflow-hidden line-clamp-3">
-              {template.content.substring(0, 100)}{template.content.length > 100 ? "..." : ""}
-            </pre>
+                <pre className="text-xs text-gray-500 dark:text-gray-400 text-center whitespace-pre-wrap overflow-hidden line-clamp-3">
+                  {template.content.split('\n')[0]}
+                    {template.content.includes('\n') ? "..." : ""}
+                </pre>
                                     </div>
                                     <h2 className="text-sm text-center font-medium">{template.name}</h2>
                                 </button>

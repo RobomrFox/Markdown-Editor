@@ -1,3 +1,5 @@
+
+
 import { Document } from "@tiptap/extension-document";
 import { Paragraph } from "@tiptap/extension-paragraph";
 import { Text } from "@tiptap/extension-text";
@@ -29,34 +31,27 @@ import { useState } from "react";
 
 const FlexibleImage = Node.create({
   name: "flexibleImage",
-
   group: "inline",
-
   inline: true,
-
   atom: true,
-
   addAttributes() {
     return {
       src: { default: null },
       alt: { default: null },
       title: { default: null },
-      width: { default: "50" }, // Set default width
-      height: { default: "50" }, // Set default height
+      width: { default: "50" },
+      height: { default: "50" },
       style: {
-        default: "display: inline-block; width: 50px; height: 50px;", // Enforce size in style
+        default: "display: inline-block; width: 50px; height: 50px;",
       },
     };
   },
-
   parseHTML() {
     return [{ tag: "img[src]" }];
   },
-
   renderHTML({ HTMLAttributes }) {
     return ["img", mergeAttributes(HTMLAttributes)];
   },
-
   defining: false,
   allowGapCursor: true,
 });
@@ -77,14 +72,15 @@ const MenuBar = () => {
   return (
     <div className="h-full flex flex-col w-[calc(100%-4rem)] mx-auto">
       <div className="group relative bg-white/90 backdrop-blur-md border border-slate-200 p-2 my-4 rounded-lg shadow-sm flex gap-4 items-center max-w-[90%] mx-auto transition-all duration-300 hover:shadow-md">
-        {/* Original buttons with updated styling */}
+        {/* Menu buttons */}
         <button
           onClick={() => editor.chain().focus().toggleBold().run()}
           disabled={!editor.can().chain().focus().toggleBold().run()}
-          className={`p-2 rounded-md transition-colors ${editor.isActive("bold")
+          className={`p-2 rounded-md transition-colors ${
+            editor.isActive("bold")
               ? "bg-slate-100 text-blue-600"
               : "hover:bg-slate-50"
-            }`}
+          }`}
         >
           <img
             src="src/assets/1_MenuBar/1_bold.svg"
@@ -96,10 +92,11 @@ const MenuBar = () => {
         <button
           onClick={() => editor.chain().focus().toggleItalic().run()}
           disabled={!editor.can().chain().focus().toggleItalic().run()}
-          className={`p-2 rounded-md transition-colors ${editor.isActive("italic")
+          className={`p-2 rounded-md transition-colors ${
+            editor.isActive("italic")
               ? "bg-slate-100 text-blue-600"
               : "hover:bg-slate-50"
-            }`}
+          }`}
         >
           <img
             src="src/assets/1_MenuBar/2_italic.svg"
@@ -111,10 +108,11 @@ const MenuBar = () => {
         <button
           onClick={() => editor.chain().focus().toggleStrike().run()}
           disabled={!editor.can().chain().focus().toggleStrike().run()}
-          className={`p-2 rounded-md transition-colors ${editor.isActive("strike")
+          className={`p-2 rounded-md transition-colors ${
+            editor.isActive("strike")
               ? "bg-slate-100 text-blue-600"
               : "hover:bg-slate-50"
-            }`}
+          }`}
         >
           <img
             src="src/assets/1_MenuBar/3_Strike.svg"
@@ -129,10 +127,11 @@ const MenuBar = () => {
           onClick={() =>
             editor.chain().focus().toggleHeading({ level: 1 }).run()
           }
-          className={`p-2 rounded-md transition-colors ${editor.isActive("heading", { level: 1 })
+          className={`p-2 rounded-md transition-colors ${
+            editor.isActive("heading", { level: 1 })
               ? "bg-slate-100 text-blue-600"
               : "hover:bg-slate-50"
-            }`}
+          }`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -154,10 +153,11 @@ const MenuBar = () => {
           onClick={() =>
             editor.chain().focus().toggleHeading({ level: 2 }).run()
           }
-          className={`p-2 rounded-md transition-colors ${editor.isActive("heading", { level: 2 })
+          className={`p-2 rounded-md transition-colors ${
+            editor.isActive("heading", { level: 2 })
               ? "bg-slate-100 text-blue-600"
               : "hover:bg-slate-50"
-            }`}
+          }`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -179,10 +179,11 @@ const MenuBar = () => {
           onClick={() =>
             editor.chain().focus().toggleHeading({ level: 3 }).run()
           }
-          className={`p-2 rounded-md transition-colors ${editor.isActive("heading", { level: 3 })
+          className={`p-2 rounded-md transition-colors ${
+            editor.isActive("heading", { level: 3 })
               ? "bg-slate-100 text-blue-600"
               : "hover:bg-slate-50"
-            }`}
+          }`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -204,10 +205,11 @@ const MenuBar = () => {
 
         <button
           onClick={() => editor.chain().focus().toggleBulletList().run()}
-          className={`p-2 rounded-md transition-colors ${editor.isActive("bulletList")
+          className={`p-2 rounded-md transition-colors ${
+            editor.isActive("bulletList")
               ? "bg-slate-100 text-blue-600"
               : "hover:bg-slate-50"
-            }`}
+          }`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -216,10 +218,10 @@ const MenuBar = () => {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="lucide lucide-list-icon lucide-list"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="lucide lucide-list-icon lucide-list"
           >
             <path d="M3 12h.01" />
             <path d="M3 18h.01" />
@@ -232,10 +234,11 @@ const MenuBar = () => {
 
         <button
           onClick={() => editor.chain().focus().toggleOrderedList().run()}
-          className={`p-2 rounded-md transition-colors ${editor.isActive("orderedList")
+          className={`p-2 rounded-md transition-colors ${
+            editor.isActive("orderedList")
               ? "bg-slate-100 text-blue-600"
               : "hover:bg-slate-50"
-            }`}
+          }`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -244,10 +247,10 @@ const MenuBar = () => {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="lucide lucide-list-ordered-icon lucide-list-ordered"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="lucide lucide-list-ordered-icon lucide-list-ordered"
           >
             <path d="M10 12h11" />
             <path d="M10 18h11" />
@@ -258,14 +261,13 @@ const MenuBar = () => {
           </svg>
         </button>
 
-        
-
         <button
           onClick={() => editor.chain().focus().toggleCodeBlock().run()}
-          className={`p-2 rounded-md transition-colors ${editor.isActive("codeBlock")
+          className={`p-2 rounded-md transition-colors ${
+            editor.isActive("codeBlock")
               ? "bg-slate-100 text-blue-600"
               : "hover:bg-slate-50"
-            }`}
+          }`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -300,12 +302,11 @@ const MenuBar = () => {
             <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
           </svg>
         </button>
-
       </div>
 
-      <div className="h-full relative">
-  <EditorContent editor={editor} className="flex-grow outline-none" />
-</div>
+      <div className="h-full">
+        <EditorContent editor={editor} className="flex-grow outline-none" />
+      </div>
     </div>
   );
 };
@@ -330,7 +331,7 @@ const Tiptap = () => {
     TextStyle,
     HorizontalRule,
     Markdown.configure({
-      html: true, // Allow GitHub-compatible HTML
+      html: true,
       transformPastedText: true,
     }),
   ];
@@ -378,7 +379,7 @@ const Tiptap = () => {
   });
 
   if (!editor) {
-    return null; // Wait for the editor to initialize
+    return null;
   }
 
   return (
@@ -389,3 +390,4 @@ const Tiptap = () => {
 };
 
 export default Tiptap;
+

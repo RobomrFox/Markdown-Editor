@@ -1,9 +1,10 @@
 
 import { Provider } from 'jotai';
-import MdWrapper from './components/mdwrapper';
-import SideBar from './components/sidebar';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import LoginPage from './pages/login';
+import RegisterPage from './pages/register';
+import HomePage from './pages/home';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 
 function App() {
@@ -13,16 +14,16 @@ function App() {
     <>
     <Provider>
 
-    <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 h-screen overflow-hidden">
-      <SideBar></SideBar>
+      <BrowserRouter>
+        <Routes>
 
-      <div className="card col-span-2 md:col-span-3 lg:col-span-4 overflow-auto">
-        <MdWrapper />
-        <ToastContainer />
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/register' element={<RegisterPage />} />
 
-      </div>
-
-    </div>
+          <Route path='/' element={<HomePage />} />
+          
+        </Routes>
+      </BrowserRouter>
     
     </Provider>
       

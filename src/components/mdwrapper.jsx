@@ -22,14 +22,6 @@ const MdWrapper = () => {
 
   const handleCopy = useCallback(async () => {
     try {
-      if (!editor) {
-        toast.error('Editor not initialized', {
-          position: "bottom-right",
-          className: 'bg-red-100 border border-red-200 text-red-700',
-          autoClose: 3000,
-        });
-        return;
-      }
       
       const markdownContent = editor.storage.markdown.getMarkdown();
       await navigator.clipboard.writeText(markdownContent);

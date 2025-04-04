@@ -21,19 +21,8 @@ import { useEditor, EditorContent } from "@tiptap/react";
 import React, { useCallback } from "react";
 import { editorState } from "../store/atoms/editor";
 import { useAtomValue, useSetAtom } from "jotai";
-import EmojiPicker from "emoji-picker-react";
 
 import { Markdown } from "tiptap-markdown";
-import {
-  FaBold,
-  FaItalic,
-  FaStrikethrough,
-  FaUnderline,
-  FaSmile,
-  FaHighlighter,
-  FaMinus,
-  FaImage,
-} from "react-icons/fa";
 
 import { Node, mergeAttributes } from "@tiptap/core";
 import { useState } from "react";
@@ -268,24 +257,8 @@ const MenuBar = () => {
             <path d="M6 18H4c0-1 2-2 2-3s-1-1.5-2-1" />
           </svg>
         </button>
-        <div className="relative">
-          <button
-            onClick={() => setShowEmojiPicker((prev) => !prev)}
-            className="p-2 rounded hover:bg-slate-50"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z" />
-            </svg>
 
-          </button>
-          {showEmojiPicker && (
-            <div className="absolute z-1000">
-              <EmojiPicker onEmojiClick={addEmoji} />
-            </div>
-          )}
-        </div>
-
-        <div className="h-6 w-px bg-slate-200 mx-1"></div>
+        
 
         <button
           onClick={() => editor.chain().focus().toggleCodeBlock().run()}
@@ -309,6 +282,8 @@ const MenuBar = () => {
             />
           </svg>
         </button>
+
+        <div className="h-6 w-px bg-slate-200 mx-1"></div>
 
         <button
           onClick={() => editor.chain().focus().setHorizontalRule().run()}

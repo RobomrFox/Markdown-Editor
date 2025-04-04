@@ -23,19 +23,8 @@ import { useEditor, EditorContent } from "@tiptap/react";
 import React, { useCallback } from "react";
 import { editorState } from "../store/atoms/editor";
 import { useAtomValue, useSetAtom } from "jotai";
-import EmojiPicker from "emoji-picker-react";
 
 import { Markdown } from "tiptap-markdown";
-import {
-  FaBold,
-  FaItalic,
-  FaStrikethrough,
-  FaUnderline,
-  FaSmile,
-  FaHighlighter,
-  FaMinus,
-  FaImage,
-} from "react-icons/fa";
 
 import { Node, mergeAttributes } from "@tiptap/core";
 import { useState } from "react";
@@ -271,23 +260,6 @@ const MenuBar = () => {
             <path d="M6 18H4c0-1 2-2 2-3s-1-1.5-2-1" />
           </svg>
         </button>
-        <div className="relative">
-          <button
-            onClick={() => setShowEmojiPicker((prev) => !prev)}
-            className="p-2 rounded-md hover:bg-slate-200"
-          >
-            <FaSmile size={23} />
-          </button>
-
-          {showEmojiPicker && (
-            <div
-              className="absolute top-full left-0 z-50 bg-white shadow-md border border-gray-300 rounded-md"
-              style={{ pointerEvents: 'auto' }}
-            >
-              <EmojiPicker onEmojiClick={addEmoji} />
-            </div>
-          )}
-        </div>
 
         <button
           onClick={() => editor.chain().focus().toggleCodeBlock().run()}
@@ -312,6 +284,8 @@ const MenuBar = () => {
             />
           </svg>
         </button>
+
+        <div className="h-6 w-px bg-slate-200 mx-1"></div>
 
         <button
           onClick={() => editor.chain().focus().setHorizontalRule().run()}

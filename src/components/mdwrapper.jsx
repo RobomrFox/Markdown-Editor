@@ -86,33 +86,33 @@ const MdWrapper = () => {
     <DndProvider>
       <div className="flex flex-col items-center mt-4">
         <div className="flex gap-4 mb-4">
-        <div className="">
-          <input
-            type="text"
-            placeholder="Enter page title..."
-            value={pageTitle}
-            onChange={(e) => setPageTitle(e.target.value)}
-            className="border border-gray-300 p-2 rounded w-64"
-          />
-        </div>
-          <button
-            className="flex gap-2 items-center border-2 p-1 cursor-pointer bg-green-400/70 hover:bg-green-400/80 transition-all ease-in-out duration-200 active:scale-95"
-          >
-            <span>Save</span>
-            <svg xmlns="http://www.w3.org/2000/svg"
-                 viewBox="0 0 24 24"
-                 fill="none" 
-                 stroke="currentColor" 
-                 strokeWidth="2" 
-                 strokeLinecap="round"
-                 strokeLinejoin="round"
-                 className="lucide lucide-server-icon lucide-server w-5">
-              <rect width="20" height="8" x="2" y="2" rx="2" ry="2" />
-              <rect width="20" height="8" x="2" y="14" rx="2" ry="2" />
-              <line x1="6" x2="6.01" y1="6" y2="6" />
-              <line x1="6" x2="6.01" y1="18" y2="18" />
-            </svg>
-          </button>
+        {/*<div className="">*/}
+        {/*  <input*/}
+        {/*    type="text"*/}
+        {/*    placeholder="Enter page title..."*/}
+        {/*    value={pageTitle}*/}
+        {/*    onChange={(e) => setPageTitle(e.target.value)}*/}
+        {/*    className="border border-gray-300 p-2 rounded w-64"*/}
+        {/*  />*/}
+        {/*</div>*/}
+          {/*<button*/}
+          {/*  className="flex gap-2 items-center border-2 p-1 cursor-pointer bg-green-400/70 hover:bg-green-400/80 transition-all ease-in-out duration-200 active:scale-95"*/}
+          {/*>*/}
+          {/*  <span>Save</span>*/}
+          {/*  <svg xmlns="http://www.w3.org/2000/svg"*/}
+          {/*       viewBox="0 0 24 24"*/}
+          {/*       fill="none" */}
+          {/*       stroke="currentColor" */}
+          {/*       strokeWidth="2" */}
+          {/*       strokeLinecap="round"*/}
+          {/*       strokeLinejoin="round"*/}
+          {/*       className="lucide lucide-server-icon lucide-server w-5">*/}
+          {/*    <rect width="20" height="8" x="2" y="2" rx="2" ry="2" />*/}
+          {/*    <rect width="20" height="8" x="2" y="14" rx="2" ry="2" />*/}
+          {/*    <line x1="6" x2="6.01" y1="6" y2="6" />*/}
+          {/*    <line x1="6" x2="6.01" y1="18" y2="18" />*/}
+          {/*  </svg>*/}
+          {/*</button>*/}
 
           <button
             onClick={handleCopy}

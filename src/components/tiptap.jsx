@@ -28,6 +28,7 @@ import { Markdown } from "tiptap-markdown";
 
 import { Node, mergeAttributes } from "@tiptap/core";
 import { useState } from "react";
+import EmojiPicker from "emoji-picker-react";
 
 const FlexibleImage = Node.create({
   name: "flexibleImage",
@@ -76,11 +77,10 @@ const MenuBar = () => {
         <button
           onClick={() => editor.chain().focus().toggleBold().run()}
           disabled={!editor.can().chain().focus().toggleBold().run()}
-          className={`p-2 rounded-md transition-colors ${
-            editor.isActive("bold")
+          className={`p-2 rounded-md transition-colors ${editor.isActive("bold")
               ? "bg-slate-100 text-blue-600"
               : "hover:bg-slate-50"
-          }`}
+            }`}
         >
           <img
             src="src/assets/1_MenuBar/1_bold.svg"
@@ -92,11 +92,10 @@ const MenuBar = () => {
         <button
           onClick={() => editor.chain().focus().toggleItalic().run()}
           disabled={!editor.can().chain().focus().toggleItalic().run()}
-          className={`p-2 rounded-md transition-colors ${
-            editor.isActive("italic")
+          className={`p-2 rounded-md transition-colors ${editor.isActive("italic")
               ? "bg-slate-100 text-blue-600"
               : "hover:bg-slate-50"
-          }`}
+            }`}
         >
           <img
             src="src/assets/1_MenuBar/2_italic.svg"
@@ -108,11 +107,10 @@ const MenuBar = () => {
         <button
           onClick={() => editor.chain().focus().toggleStrike().run()}
           disabled={!editor.can().chain().focus().toggleStrike().run()}
-          className={`p-2 rounded-md transition-colors ${
-            editor.isActive("strike")
+          className={`p-2 rounded-md transition-colors ${editor.isActive("strike")
               ? "bg-slate-100 text-blue-600"
               : "hover:bg-slate-50"
-          }`}
+            }`}
         >
           <img
             src="src/assets/1_MenuBar/3_Strike.svg"
@@ -127,11 +125,10 @@ const MenuBar = () => {
           onClick={() =>
             editor.chain().focus().toggleHeading({ level: 1 }).run()
           }
-          className={`p-2 rounded-md transition-colors ${
-            editor.isActive("heading", { level: 1 })
+          className={`p-2 rounded-md transition-colors ${editor.isActive("heading", { level: 1 })
               ? "bg-slate-100 text-blue-600"
               : "hover:bg-slate-50"
-          }`}
+            }`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -153,11 +150,10 @@ const MenuBar = () => {
           onClick={() =>
             editor.chain().focus().toggleHeading({ level: 2 }).run()
           }
-          className={`p-2 rounded-md transition-colors ${
-            editor.isActive("heading", { level: 2 })
+          className={`p-2 rounded-md transition-colors ${editor.isActive("heading", { level: 2 })
               ? "bg-slate-100 text-blue-600"
               : "hover:bg-slate-50"
-          }`}
+            }`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -179,11 +175,10 @@ const MenuBar = () => {
           onClick={() =>
             editor.chain().focus().toggleHeading({ level: 3 }).run()
           }
-          className={`p-2 rounded-md transition-colors ${
-            editor.isActive("heading", { level: 3 })
+          className={`p-2 rounded-md transition-colors ${editor.isActive("heading", { level: 3 })
               ? "bg-slate-100 text-blue-600"
               : "hover:bg-slate-50"
-          }`}
+            }`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -205,11 +200,10 @@ const MenuBar = () => {
 
         <button
           onClick={() => editor.chain().focus().toggleBulletList().run()}
-          className={`p-2 rounded-md transition-colors ${
-            editor.isActive("bulletList")
+          className={`p-2 rounded-md transition-colors ${editor.isActive("bulletList")
               ? "bg-slate-100 text-blue-600"
               : "hover:bg-slate-50"
-          }`}
+            }`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -234,11 +228,10 @@ const MenuBar = () => {
 
         <button
           onClick={() => editor.chain().focus().toggleOrderedList().run()}
-          className={`p-2 rounded-md transition-colors ${
-            editor.isActive("orderedList")
+          className={`p-2 rounded-md transition-colors ${editor.isActive("orderedList")
               ? "bg-slate-100 text-blue-600"
               : "hover:bg-slate-50"
-          }`}
+            }`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -263,11 +256,10 @@ const MenuBar = () => {
 
         <button
           onClick={() => editor.chain().focus().toggleCodeBlock().run()}
-          className={`p-2 rounded-md transition-colors ${
-            editor.isActive("codeBlock")
+          className={`p-2 rounded-md transition-colors ${editor.isActive("codeBlock")
               ? "bg-slate-100 text-blue-600"
               : "hover:bg-slate-50"
-          }`}
+            }`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -287,6 +279,28 @@ const MenuBar = () => {
 
         <div className="h-6 w-px bg-slate-200 mx-1"></div>
 
+        <div className="relative">
+          <button
+            onClick={() => setShowEmojiPicker((prev) => !prev)}
+            className="p-2 rounded-md hover:bg-slate-50"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z" />
+            </svg>
+
+          </button>
+
+          {showEmojiPicker && (
+            <div
+              className="absolute top-full left-0 z-50 bg-white shadow-md border border-gray-300 rounded-md"
+              style={{ pointerEvents: 'auto' }}
+            >
+              <EmojiPicker onEmojiClick={addEmoji} />
+            </div>
+          )}
+        </div>
+
+
         <button
           onClick={() => editor.chain().focus().setHorizontalRule().run()}
           className="p-2 rounded-md transition-colors hover:bg-slate-50"
@@ -302,6 +316,8 @@ const MenuBar = () => {
             <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
           </svg>
         </button>
+
+
       </div>
 
       <div className="h-full">

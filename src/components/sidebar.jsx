@@ -6,7 +6,7 @@ import { useDraggable } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
 import { templates } from "../db/Templates.js";
 import { useState } from "react";
-import { toast } from "react-toastify/unstyled";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 
@@ -288,7 +288,11 @@ const SideBar = () => {
 
                     if (response.ok) {
                         const data = await response.json();
-                        toast.success(data.msg);
+                        toast.success(data.msg, {
+                            position: "bottom-right",
+                            className: 'bg-green-50 border border-green-200 text-green-700',
+                            autoClose: 3000,
+                          });
                         navigate('/login');
                     } else {
                         const errorData = await response.json();

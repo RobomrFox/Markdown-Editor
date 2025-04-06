@@ -18,4 +18,5 @@
   
   npm run dev
   ```
+  only run cd .. if your terminal doesn't take you back to Markdown-Editor Directory
   
